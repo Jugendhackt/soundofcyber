@@ -7,11 +7,40 @@
 
 		<div class="mypanel"></div>
 		<script>
-			$.getJSON('http://time.jsontest.com', function(data) {
+			$.getJSON('/get_sound_data', function(data) {
 				
-				var text = `Date: ${data.date}<br>
-							Time: ${data.time}<br>
-							Unix time: ${data.milliseconds_since_epoch}`
+				var text = data
+				console.log(data)
+				// Einzelne Daten
+				function play_sound(data, index)
+					{
+						bip(data[index].freq, data[index].length)
+						index++
+						if(index < data.length){
+						window.setTimeout(play_sound, data[index].length*1000, data, index)
+						}
+					}
+
+
+					function bip(f, t){
+					console.log("Beeping")
+					var context = new AudioContext()
+					var o = context.createOscillator()
+					var g = context.createGain()
+					o.connect(g)
+					g.connect(context.destination)
+					o.frequency.value = f
+					o.start(0)				
+					g.gain.exponentialRampToValueAtTime(0.000001, t*0.99)
+					o.stop(t)
+					}
+					function biprepeat(f, t, r, i){
+						while(r>0){
+							window.setTimeout(bip, r*i*1000, f, t)
+							r-=1
+						}				
+						}
+				play_sound(data, 0)
 							
 				
 				$(".mypanel").html(text);
