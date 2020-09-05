@@ -1,11 +1,22 @@
 <html>
 	<head>
 		<title>Sound of Cyber</title>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	</head>
 	<body>
-		<!-- Hier kommt das HTML hin -->
-		<script type="text/javascript">
-			// Hier kann dein Code hin
+
+		<div class="mypanel"></div>
+		<script>
+			$.getJSON('http://time.jsontest.com', function(data) {
+				
+				var text = `Date: ${data.date}<br>
+							Time: ${data.time}<br>
+							Unix time: ${data.milliseconds_since_epoch}`
+							
+				
+				$(".mypanel").html(text);
+			});
 		</script>
+		
 	</body>
 </html>
