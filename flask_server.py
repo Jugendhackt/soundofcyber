@@ -22,6 +22,14 @@ def get_sound_data():
     data = convert_to_json(data)
     return data
 
+@app.route("/logo_dark_bg.svg")
+def logodark():
+    return open("logo_dark_bg.svg", encoding = "utf8").read(), 200, {'Content-Type': 'image/svg+xml charset=utf-8'}
+
+@app.route("/logo.svg")
+def logo():
+    return open("logo.svg", encoding = "utf8").read(), 200, {'Content-Type': 'image/svg+xml charset=utf-8'}
+
 def convert_to_json(data):
     return jsonify(data)
 
