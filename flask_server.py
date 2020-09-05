@@ -2,6 +2,8 @@ from flask import Flask
 import os
 import pathlib
 
+import get_sound_data as GSD
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -14,7 +16,8 @@ def index():
 
 @app.route("/get_sound_data")
 def get_sound_data():
-    
+    data = GSD.get_sound_data()
+    return data
 
 if __name__ == "__main__":
     app.run(port=1337, debug=True)
