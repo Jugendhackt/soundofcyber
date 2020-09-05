@@ -12,5 +12,9 @@ def index():
     # Webseite als Index anzeigen
     return website
 
+@app.route("/get_sound_data")
+def get_sound_data():
+    
+
 if __name__ == "__main__":
     app.run(port=1337, debug=True)
