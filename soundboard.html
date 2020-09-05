@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<title>Sound of Cyber</title>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td> 
+					<a onclick="bip(16,35, 2)">
+						c0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(17.32, 2)">
+						c#0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(18.35, 2)">
+						d0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(19.45, 2)">
+						eb0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(20.6, 2)">
+						e0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(21.83, 2)">
+						f0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(23.12, 2)">
+						f#0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(24.5, 2)">
+						g0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(25.96, 2)">
+						g#0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(27.5, 2)">
+						a0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(29,14, 2)">
+						hb0
+					</a>
+				</td>
+				<td> 
+					<a onclick="bip(30,84, 2)">
+						h0
+					</a>
+				</td>
+			</tr>
+			<td> 
+				<a onclick="bip(32.7, 2)">
+					c0
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(34.65, 2)">
+					c#0
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(36.71, 2)">
+					d1
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(38.89, 2)">
+					eb1
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(41.2, 2)">
+					e1
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(43.65, 2)">
+					f1
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(46.25, 2)">
+					f#1
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(49, 2)">
+					g1
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(51.91, 2)">
+					g#1
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(55, 2)">
+					a1
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(58.27, 2)">
+					hb1
+				</a>
+			</td>
+			<td> 
+				<a onclick="bip(61.74, 2)">
+					h1
+				</a>
+			</td>
+		</tr>
+		</table>
+		<script type="text/javascript">
+				function bip(f, t){
+				var context = new AudioContext()
+				var o = context.createOscillator()
+				var g = context.createGain()
+				o.connect(g)
+				g.connect(context.destination)
+				o.frequency.value = f
+				o.start(0)				
+				g.gain.exponentialRampToValueAtTime(0.000001, t*0.99)
+				o.stop(t)
+				}
+				function biprepeat(f, t, r, i){
+				while(r>0){
+					window.setTimeout(bip, r*i*1000, f, t)
+					r-=1
+				}				
+				}
+		</script>
+	</body>
+</html>
