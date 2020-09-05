@@ -1,0 +1,18 @@
+---------------SOUND OF CYBER NEWTORK INPUT STANDARD-------------
+
+1. Each Node Consists of Type (I=Input, O=Output, N=Other) an ascending Number (starting at 0) and Data
+2. The Data is separated from Node declaration by an underscore (_)
+3. Data in Brackets ist seperated by colon (,)
+4. Nodes are to be separated from others by Semicolons
+
+Data Types:
+
+Input Node Data: Requested API
+	Examples: I0_2 = Input Node 0, Output equals Data from API 2
+
+Output Node Data: Frequency, Duration
+	Examples: O0_I0, I2 = Output Node 0, Use Output from I0 as Frequency and I2 as Duration
+
+Other Node Data: Type, Input 1, Input 2
+	Type Options: A=Add, S=Subtract, M=Multiply, D=Divide
+	Examples: N0_A,I0,I1 = Normal Node 0, Add Output from Input 1 and 2 together
