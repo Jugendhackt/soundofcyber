@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 def index():
     # Bekomme den Pfad der Index-HTML Seite: Ist im gleichen Ordner, also selber Pfad
-    html_path = str( str( pathlib.Path(__file__).parent.absolute() ) + r"\index.html"   )
+    html_path = pathlib.Path(__file__).parent.absolute() / "index.html"
     website = open(html_path, "r").read()
     # Webseite als Index anzeigen
     return website
