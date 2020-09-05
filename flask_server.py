@@ -1,0 +1,16 @@
+from flask import Flask
+import os
+import pathlib
+
+app = Flask(__name__)
+@app.route("/")
+
+def index():
+    # Bekomme den Pfad der Index-HTML Seite: Ist im gleichen Ordner, also selber Pfad
+    html_path = str( str( pathlib.Path(__file__).parent.absolute() ) + r"\index.html"   )
+    website = open(html_path, "r").read()
+    # Webseite als Index anzeigen
+    return website
+
+if __name__ == "__main__":
+    app.run(port=1337, debug=True)
