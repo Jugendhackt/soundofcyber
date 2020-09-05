@@ -23,23 +23,23 @@
 
 
 					function bip(f, t){
-					console.log("Beeping")
-					var context = new AudioContext()
-					var o = context.createOscillator()
-					var g = context.createGain()
-					o.connect(g)
-					g.connect(context.destination)
-					o.frequency.value = f
-					o.start(0)				
-					g.gain.exponentialRampToValueAtTime(0.000001, t*0.99)
-					o.stop(t)
-					}
+						console.log("Beeping")
+						var context = new AudioContext()
+						var o = context.createOscillator()
+						var g = context.createGain()
+						o.connect(g)
+						g.connect(context.destination)
+						o.frequency.value = f
+						o.start(0)				
+						g.gain.exponentialRampToValueAtTime(0.000001, t*0.99)
+						o.stop(t)
+						}
 					function biprepeat(f, t, r, i){
 						while(r>0){
 							window.setTimeout(bip, r*i*1000, f, t)
 							r-=1
-						}				
-						}
+							}				
+							}
 				play_sound(data, 0)
 							
 				
