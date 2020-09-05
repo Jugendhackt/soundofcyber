@@ -4,6 +4,13 @@ FrequencyList = [16.35,17.32,18.35,19.45,20.60,21.83,23.12,24.50,25.96,27.50,29.
                  1047,1109,1175,1245,1319,1397,1480,1568,1661,1760,1865,1976, 2093,2217,2349,2489,2637,2794,2960,3136,3322,3520,3729,3951,
                  4186,4435,4699,4978,5274,5588,5920,6272,6645,7040,7459,7902]
 ResultsTable = {}
+
+
+class ReturnInterpretation():
+    def API1(self):
+        pass
+
+
 class Analysis:
     def Decode(self,Data,APIs):
         Outputs = []
@@ -12,7 +19,7 @@ class Analysis:
         Sounds = []
         AllNodes = Data.split(";")
         for n in AllNodes:
-            #Separate Input Into Nodes and Sort by Category
+            # Separate Input Into Nodes and Sort by Category
             if(n.startswith("O")):
                 Outputs.append(n)
             elif(n.startswith("I")):
@@ -23,12 +30,12 @@ class Analysis:
             else:
                 Normal.append(n)
 
-            #Solve All N-Nodes
+            # Solve All N-Nodes
             for Node in Normal:
                 if(Node.split("_")[0] in ResultsTable):
                     pass
                 else:
-                    Solve(Node,AllNodes)
+                    Analysis.Solve(Node,AllNodes)
 
             #Solve Outputs
             for Node in Outputs:
