@@ -3,8 +3,8 @@ import os
 import pathlib
 
 app = Flask(__name__)
-@app.route("/")
 
+@app.route("/")
 def index():
     # Bekomme den Pfad der Index-HTML Seite: Ist im gleichen Ordner, also selber Pfad
     html_path = pathlib.Path(__file__).parent.absolute() / "index.html"
