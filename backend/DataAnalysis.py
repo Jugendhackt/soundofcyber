@@ -4,80 +4,80 @@ FrequencyList = [16.35,17.32,18.35,19.45,20.60,21.83,23.12,24.50,25.96,27.50,29.
                  1047,1109,1175,1245,1319,1397,1480,1568,1661,1760,1865,1976, 2093,2217,2349,2489,2637,2794,2960,3136,3322,3520,3729,3951,
                  4186,4435,4699,4978,5274,5588,5920,6272,6645,7040,7459,7902]
 ResultsTable = {}
-
-def Decode(Data,APIs):
-    Outputs = []
-    Inputs = []
-    Normal = []
-    Sounds = []
-    AllNodes = Data.split(";")
-    for n in AllNodes:
-        #Separate Input Into Nodes and Sort by Category
-        if(n.startswith("O")):
-            Outputs.append(n)
-        elif(n.startswith("I")):
-            Inputs.append(n)
-            Num = n.split("_")[0]
-            APIResult = APIs[int(n.split("_")[1])]
-            ResultsTable[Num] = APIResult
-        else:
-            Normal.append(n)
-
-        #Solve All N-Nodes
-        for Node in Normal:
-            if(Node.split("_")[0] in ResultsTable):
-                pass
+class Analysis:
+    def Decode(self,Data,APIs):
+        Outputs = []
+        Inputs = []
+        Normal = []
+        Sounds = []
+        AllNodes = Data.split(";")
+        for n in AllNodes:
+            #Separate Input Into Nodes and Sort by Category
+            if(n.startswith("O")):
+                Outputs.append(n)
+            elif(n.startswith("I")):
+                Inputs.append(n)
+                Num = n.split("_")[0]
+                APIResult = APIs[int(n.split("_")[1])]
+                ResultsTable[Num] = APIResult
             else:
-                Solve(Node,AllNodes)
+                Normal.append(n)
 
-        #Solve Outputs
-        for Node in Outputs:
-            Dependencies = Node.split("_")[1].split(",")
-            DataDict = {}
-            DataDict["freq"] = RoundToNearest(int(ResultsTable.get(Dependencies[0])))
-            DataDict["length"] = ResultsTable.get(Dependencies[1])
-            Sounds.append(DataDict)
-    return Sounds
+            #Solve All N-Nodes
+            for Node in Normal:
+                if(Node.split("_")[0] in ResultsTable):
+                    pass
+                else:
+                    Solve(Node,AllNodes)
 
-def Solve(Node,AllNodes):
-    Dependencies = Node.split("_")[1].split(",")
-    Dependend_Nodes = Dependencies[1],Dependencies[2]
-    Data = []
-    Type = Dependencies[0]
-    for N in Dependend_Nodes:
-        if(N in ResultsTable):
-            Data.append(ResultsTable.get(N))
-        else:
-            Solve(N)
-    Result = 0
-    Data[0] = int(Data[0])
-    Data[1] = int(Data[1])
+            #Solve Outputs
+            for Node in Outputs:
+                Dependencies = Node.split("_")[1].split(",")
+                DataDict = {}
+                DataDict["freq"] = Analysis.RoundToNearest(int(ResultsTable.get(Dependencies[0])))
+                DataDict["length"] = ResultsTable.get(Dependencies[1])
+                Sounds.append(DataDict)
+        return Sounds
 
-    if(Type == "A"):
-        Result = Data[0]+Data[1]
-    elif(Type == "S"):
-        Result = Data[0]-Data[1]
-    elif(Type=="D"):
-        Result = Data[0]/Data[1]
-    elif(Type=="M"):
-        Result = Data[0]/Data[1]
-    ResultsTable[Node.split("_")[0]] = Result
+    def Solve(self,Node,AllNodes):
+        Dependencies = Node.split("_")[1].split(",")
+        Dependend_Nodes = Dependencies[1],Dependencies[2]
+        Data = []
+        Type = Dependencies[0]
+        for N in Dependend_Nodes:
+            if(N in ResultsTable):
+                Data.append(ResultsTable.get(N))
+            else:
+                Analysis.Solve(N)
+        Result = 0
+        Data[0] = int(Data[0])
+        Data[1] = int(Data[1])
+
+        if(Type == "A"):
+            Result = Data[0]+Data[1]
+        elif(Type == "S"):
+            Result = Data[0]-Data[1]
+        elif(Type=="D"):
+            Result = Data[0]/Data[1]
+        elif(Type=="M"):
+            Result = Data[0]/Data[1]
+        ResultsTable[Node.split("_")[0]] = Result
 
 
-def RoundToNearest(Number):
-    print(Number)
-    Smallest = 100000
-    Target = Number
-    for i in FrequencyList:
-        Error = abs(Number-i)
-        if(Error < Smallest):
-            Smallest = abs(Number-i)
-            Target = i
-    return Target
+    def RoundToNearest(self,Number):
+        print(Number)
+        Smallest = 100000
+        Target = Number
+        for i in FrequencyList:
+            Error = abs(Number-i)
+            if(Error < Smallest):
+                Smallest = abs(Number-i)
+                Target = i
+        return Target
 
 
 MyNetwork = "I1_1;I2_3;I3_8;N1_A,I1,I2;O1_I3,N1"
-Sounds = Decode(MyNetwork)
+Sounds = Analysis.Decode(MyNetwork)
 print(Sounds)
 
 
