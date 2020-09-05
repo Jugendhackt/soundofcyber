@@ -1,18 +1,24 @@
 <html>
 	<head>
 		<title>Sound of Cyber</title>
+		<h2>Sound of Cyber</h2>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	</head>
 	<body>
 
 		<div class="mypanel"></div>
+
 		<script>
+			var sound_data;
+
 			$.getJSON('/get_sound_data', function(data) {
-				
-				var text = data
 				console.log(data)
-				// Einzelne Daten
-				function play_sound(data, index)
+				sound_data = data;
+			});
+
+
+			// Sound Methoden
+			function play_sound(data, index)
 					{
 						bip(data[index].freq, data[index].length)
 						index++
@@ -36,13 +42,8 @@
 						o.stop(t)
 						}
 					}
-					function biprepeat(f, t, r, i){
-						while(r>0){
-							window.setTimeout(bip, r*i*1000, f, t)
-							r-=1
-						}				
-						}
-				play_sound(data, 0)
+					
+				
 
 
 				function play_sounds(data, index)
@@ -64,22 +65,26 @@
 					
 					fs.forEach(f => {
 						if (f > 0){
-						var o = context.createOscillator()
-						o.connect(g)
-						o.frequency.value = f
-						o.start(0)
-						o.stop(t)
+							var o = context.createOscillator()
+							o.connect(g)
+							o.frequency.value = f
+							o.start(0)
+							o.stop(t)
+							}
 						}
-					});
+					);
 					}
 					
 					
-				play_sounds(data, 0)
-							
-				
-				$(".mypanel").html(text);
-			});
-		</script>
 		
+	
+			function StartButtonClick() {
+				play_sound(sound_data, 0)
+			}
+		</script>
+
+
+		<button onclick="StartButtonClick()">Starte Audio Stream</button>
+
 	</body>
 </html>
