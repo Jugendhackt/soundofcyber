@@ -5,6 +5,7 @@ import pathlib
 
 import get_sound_data as GSD
 
+
 app = Flask(__name__)
 
 @app.route("/")
