@@ -6,4 +6,4 @@ s4 = {"wave":"sinus", "freq":"458", "length":"8"}
 data = [s1,s2,s3,s4]
 
 def get_sound_data():
-    return str(data)
+    return data

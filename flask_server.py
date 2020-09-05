@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import jsonify
 import os
 import pathlib
 
@@ -17,7 +18,11 @@ def index():
 @app.route("/get_sound_data")
 def get_sound_data():
     data = GSD.get_sound_data()
+    data = convert_to_json(data)
     return data
+
+def convert_to_json(data):
+    return jsonify(data)
 
 if __name__ == "__main__":
     app.run(port=1337, debug=True)
