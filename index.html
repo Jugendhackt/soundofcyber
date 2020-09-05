@@ -25,14 +25,16 @@
 					function bip(f, t){
 					console.log("Beeping")
 					var context = new AudioContext()
-					var o = context.createOscillator()
-					var g = context.createGain()
-					o.connect(g)
-					g.connect(context.destination)
-					o.frequency.value = f
-					o.start(0)				
-					g.gain.exponentialRampToValueAtTime(0.000001, t*0.99)
-					o.stop(t)
+					if (f > 0){
+						var o = context.createOscillator()
+						var g = context.createGain()
+						o.connect(g)
+						g.connect(context.destination)
+						o.frequency.value = f
+						o.start(0)				
+						g.gain.exponentialRampToValueAtTime(0.000001, t*0.99)
+						o.stop(t)
+						}
 					}
 					function biprepeat(f, t, r, i){
 						while(r>0){
@@ -41,6 +43,38 @@
 						}				
 						}
 				play_sound(data, 0)
+
+
+				function play_sounds(data, index)
+					{
+						bips(data[index].freq, data[index].length)
+						index++
+						if(index < data.length){
+						window.setTimeout(play_sounds, data[index].length*1000, data, index)
+						}
+					}
+
+
+					function bips(fs, t){
+					console.log("Beeping")
+					var context = new AudioContext()					
+					var g = context.createGain()					
+					g.connect(context.destination)									
+					g.gain.exponentialRampToValueAtTime(0.000001, t*0.99)
+					
+					fs.forEach(f => {
+						if (f > 0){
+						var o = context.createOscillator()
+						o.connect(g)
+						o.frequency.value = f
+						o.start(0)
+						o.stop(t)
+						}
+					});
+					}
+					
+					
+				play_sounds(data, 0)
 							
 				
 				$(".mypanel").html(text);
