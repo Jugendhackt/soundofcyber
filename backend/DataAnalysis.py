@@ -1,4 +1,4 @@
-from . import request_data as rq
+import request_data as rq
 import random
 
 FrequencyList = [16.35,17.32,18.35,19.45,20.60,21.83,23.12,24.50,25.96,27.50,29.14,30.87, 32.70,34.65,36.71,38.89,41.20,43.65,46.25,49.00,51.91,55.00,58.27,61.74,
@@ -90,7 +90,7 @@ class Analysis:
 
 
 MyNetwork = "I1_1;I2_3;I3_8;N1_A,I1,I2;O1_I3,N1"
-#print(Interpret());
+print(Interpret());
 #Sounds = Analysis.Decode(MyNetwork)
 #print(Sounds)
 
