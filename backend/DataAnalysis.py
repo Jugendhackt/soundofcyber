@@ -14,7 +14,7 @@ def Interpret():
     Data = str(rq.get_data(0))
     Data = int(Data.split(" ")[1].replace(">","").replace("[","").replace("]",""))
     for i in range(0,10):
-        Note = {"freq" : Analysis().RoundToNearest(Data), "lenght": NoteLength[random.randint(0,4)]}
+        Note = {"freq" : Analysis().RoundToNearest(Data), "lenght": NoteLength[random.randint(0,3)]}
         Return.append(Note)
     return Return
 
