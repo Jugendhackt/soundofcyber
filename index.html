@@ -33,6 +33,7 @@
 			// Sound Methoden
 			function play_sound(data, index)
 					{
+						console.log("Playing sound with: " + data[index].freq  + ", " + data[index].length)
 						bip(data[index].freq, data[index].length)
 						index++
 						if(index < data.length){

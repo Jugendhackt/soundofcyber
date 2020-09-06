@@ -4,6 +4,7 @@ import os
 import pathlib
 
 import get_sound_data_example as GSD
+import backend.DataAnalysis as DA
 
 
 app = Flask(__name__)
@@ -21,7 +22,7 @@ def index():
 
 @app.route("/get_sound_data")
 def get_sound_data():
-    data = GSD.get_sound_data()
+    data = DA.Interpret()
     data = convert_to_json(data)
     return data
 
