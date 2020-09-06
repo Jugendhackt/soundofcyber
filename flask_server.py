@@ -3,7 +3,7 @@ from flask import jsonify
 import os
 import pathlib
 
-import get_sound_data as GSD
+import get_sound_data_example as GSD
 
 
 app = Flask(__name__)
