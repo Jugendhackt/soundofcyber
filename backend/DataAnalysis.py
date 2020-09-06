@@ -7,13 +7,14 @@ FrequencyList = [16.35,17.32,18.35,19.45,20.60,21.83,23.12,24.50,25.96,27.50,29.
                  1047,1109,1175,1245,1319,1397,1480,1568,1661,1760,1865,1976, 2093,2217,2349,2489,2637,2794,2960,3136,3322,3520,3729,3951,
                  4186,4435,4699,4978,5274,5588,5920,6272,6645,7040,7459,7902]
 ResultsTable = {}
+NoteLength = [0.2,0.4,0.6,0.8]
 
 def Interpret():
     Return = []
     Data = str(rq.get_data(0))
     Data = int(Data.split(" ")[1].replace(">","").replace("[","").replace("]",""))
     for i in range(0,10):
-        Note = {"freq" : Analysis().RoundToNearest(Data), "lenght": random.uniform(0.5, 2.5)}
+        Note = {"freq" : Analysis().RoundToNearest(Data), "lenght": NoteLength[random.randint(0,4)]}
         Return.append(Note)
     return Return
 
