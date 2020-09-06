@@ -97,6 +97,11 @@
 		function StartButtonClick() {
 			play_sound(sound_data, 0)
 		}
+
+		function StartButtonClick2(){
+			play_sounds([{'freq': [370.0, 659.3, 73.42], 'length': 0.125}, {'freq': [370.0, 659.3, 73.42], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [370.0, 659.3, 73.42], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [370.0, 523.3, 73.42], 'length': 0.125}, {'freq': [370.0, 659.3, 73.42], 'length': 0.125}, {'freq': [0.0], 'length': 0.25}, {'freq': [392.0, 493.9, 784.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.25}, {'freq': [392.0, 98.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.25}, {'freq': [329.6, 523.3, 98.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [261.6, 392.0, 82.41], 'length': 0.125}, {'freq': [0.0], 'length': 0.25}, {'freq': [196.0, 329.6, 82.41], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [261.6, 440.0, 87.31], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [293.7, 493.9, 98.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [277.2, 466.2, 92.5], 'length': 0.125}, {'freq': [261.6, 440.0, 87.31], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [261.6, 392.0, 82.41], 'length': 0.16666666666666666}, {'freq': [392.0, 659.3, 130.8], 'length': 0.16666666666666666}, {'freq': [493.9, 784.0, 164.8], 'length': 0.16666666666666666}, {'freq': [523.3, 880.0, 174.6], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [440.0, 698.5, 146.8], 'length': 0.125}, {'freq': [493.9, 784.0, 164.8], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [440.0, 659.3, 130.8], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [329.6, 523.3, 110.0], 'length': 0.125}, {'freq': [349.2, 293.7, 246.9], 'length': 0.125}, {'freq': [293.7, 493.9, 98.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.25}, {'freq': [329.6, 523.3, 98.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [261.6, 392.0, 82.41], 'length': 0.125}, {'freq': [329.6, 523.3, 98.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [261.6, 392.0, 82.41], 'length': 0.125}, {'freq': [0.0], 'length': 0.25}, {'freq': [196.0, 329.6, 82.41], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [261.6, 440.0, 87.31], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [293.7, 493.9, 98.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [277.2, 466.2, 92.5], 'length': 0.125}, {'freq': [261.6, 440.0, 87.31], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [261.6, 392.0, 82.41], 'length': 0.16666666666666666}, {'freq': [392.0, 659.3, 130.8], 'length': 0.16666666666666666}, {'freq': [493.9, 784.0, 164.8], 'length': 0.16666666666666666}, {'freq': [523.3, 880.0, 174.6], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [440.0, 698.5, 146.8], 'length': 0.125}, {'freq': [493.9, 784.0, 164.8], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [440.0, 659.3, 130.8], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [329.6, 523.3, 110.0], 'length': 0.125}, {'freq': [349.2, 293.7, 246.9], 'length': 0.125}, {'freq': [293.7, 493.9, 98.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.25}, {'freq': [329.6, 523.3, 98.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [0.0], 'length': 0.125}, {'freq': [261.6, 392.0, 82.41], 'length': 0.125}], 0)
+		}
+
 	</script>
 	<center style="margin:3em auto">
 		<img src="logo_dark_bg.svg" />
@@ -104,6 +109,9 @@
 	<center style="margin:3em auto">
 		<button onclick="StartButtonClick()">
 			Starte Audio Stream
+		</button >			
+		<button onclick="StartButtonClick2()">
+			Starte Mario
 		</button>
 	</center>
 </body>
