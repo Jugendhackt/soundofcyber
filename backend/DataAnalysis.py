@@ -90,7 +90,7 @@ class Analysis:
 
 
 MyNetwork = "I1_1;I2_3;I3_8;N1_A,I1,I2;O1_I3,N1"
-#print(Interpret());
+print(Interpret());
 #Sounds = Analysis.Decode(MyNetwork)
 #print(Sounds)
 
