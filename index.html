@@ -1,116 +1,119 @@
 <html>
-	<head>
-		<title>Sound of Cyber</title>
-		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<link href='https://fonts.googleapis.com/css?family=Fjalla One' rel='stylesheet'>
-		<style>
-			body {
-				font-family: 'Fjalla One';font-size: 22px;
-				overflow : hidden;
+
+<head>
+	<title>Sound of Cyber</title>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Fjalla One' rel='stylesheet'>
+	<style>
+		body {
+			font-family: 'Fjalla One';
+			font-size: 22px;
+			overflow: hidden;
+		}
+
+		#footer {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 60px;
+		}
+	</style>
+</head>
+
+<body bgcolor=#151515>
+
+	<div class="mypanel"></div>
+
+	<script>
+		var sound_data;
+
+		$.getJSON('/get_sound_data', function (data) {
+			console.log(data)
+			sound_data = data;
+		});
+
+
+		// Sound Methoden
+		function play_sound(data, index) {
+			console.log("Playing sound with: " + data[index].freq + ", " + data[index].length)
+			bip(data[index].freq, data[index].length)
+			index++
+			if (index < data.length) {
+				window.setTimeout(play_sound, data[index].length * 1000, data, index)
 			}
-			#footer {
-			position:absolute;
-			bottom:0;
-			width:100%;
-			height:60px;
+		}
+
+
+		function bip(f, t) {
+			console.log("Beeping")
+			var context = new AudioContext()
+			if (f > 0) {
+				var o = context.createOscillator()
+				var g = context.createGain()
+				o.connect(g)
+				g.connect(context.destination)
+				o.frequency.value = f
+				o.start(0)
+				g.gain.exponentialRampToValueAtTime(0.000001, t * 0.99)
+				o.stop(t)
 			}
-		</style>
-	</head>
-	<body bgcolor = #151515>
-
-		<div class="mypanel"></div>
-
-		<script>
-			var sound_data;
-
-			$.getJSON('/get_sound_data', function(data) {
-				console.log(data)
-				sound_data = data;
-			});
+		}
 
 
-			// Sound Methoden
-			function play_sound(data, index)
-					{
-						console.log("Playing sound with: " + data[index].freq  + ", " + data[index].length)
-						bip(data[index].freq, data[index].length)
-						index++
-						if(index < data.length){
-						window.setTimeout(play_sound, data[index].length*1000, data, index)
-						}
-					}
 
 
-					function bip(f, t){
-					console.log("Beeping")
-					var context = new AudioContext()
-					if (f > 0){
-						var o = context.createOscillator()
-						var g = context.createGain()
-						o.connect(g)
-						g.connect(context.destination)
-						o.frequency.value = f
-						o.start(0)				
-						g.gain.exponentialRampToValueAtTime(0.000001, t*0.99)
-						o.stop(t)
-						}
-					}
-					
-				
-
-
-				function play_sounds(data, index)
-					{
-						bips(data[index].freq, data[index].length)
-						index++
-						if(index < data.length){
-						window.setTimeout(play_sounds, data[index].length*1000, data, index)
-						}
-					}
-
-
-					function bips(fs, t){
-					console.log("Beeping")
-					var context = new AudioContext()					
-					var g = context.createGain()					
-					g.connect(context.destination)									
-					g.gain.exponentialRampToValueAtTime(0.000001, t*0.99)
-					
-					fs.forEach(f => {
-						if (f > 0){
-							var o = context.createOscillator()
-							o.connect(g)
-							o.frequency.value = f
-							o.start(0)
-							o.stop(t)
-							}
-						}
-					);
-					}
-					
-					
-		
-	
-			function StartButtonClick() {
-				play_sound(sound_data, 0)
+		function play_sounds(data, index) {
+			bips(data[index].freq, data[index].length)
+			index++
+			if (index < data.length) {
+				window.setTimeout(play_sounds, data[index].length * 1000, data, index)
 			}
-		</script>
-		<center style = "margin:3em auto">
-			<img src="logo_dark_bg.svg"/>
-		</center>
-		<center style = "margin:3em auto">
-			<button onclick="StartButtonClick()">			
-				Starte Audio Stream
-			</button>
-		</center>
-	</body>
+		}
 
-	<footer>
-		<center style ="color : white"; id = "footer">
-			<small>
-				passionally handcrafted for you<br/> by a herd of alpacas
-			</small>
-		</center>	
-	</footer>
-	</html>
+
+		function bips(fs, t) {
+			console.log("Beeping")
+			var context = new AudioContext()
+			var g = context.createGain()
+			g.connect(context.destination)
+			g.gain.exponentialRampToValueAtTime(0.000001, t * 0.99)
+
+			fs.forEach(f => {
+				if (f > 0) {
+					var o = context.createOscillator()
+					o.connect(g)
+					o.frequency.value = f
+					o.start(0)
+					o.stop(t)
+				}
+			}
+			);
+		}
+
+
+
+
+		function StartButtonClick() {
+			play_sound(sound_data, 0)
+		}
+	</script>
+	<center style="margin:3em auto">
+		<img src="logo_dark_bg.svg" />
+	</center>
+	<center style="margin:3em auto">
+		<button onclick="StartButtonClick()">
+			Starte Audio Stream
+		</button>
+	</center>
+</body>
+
+<footer>
+	<center style="color : white" ; id="footer">
+		<small>
+			passionally handcrafted for you<br /> by a herd of alpacas
+		</small>
+	</center>
+</footer>
+
+</html>
